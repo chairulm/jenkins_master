@@ -1,10 +1,7 @@
 #!/usr/bin/env python3
 
-import requests
+from flask import Flask
 
-x = requests.get('https://www.google.com')
-
-if x.status_code == 200:
- print('yay!')
-else:
- print('uh-oh!')
+@app.route('/')
+def hello():
+    return 'Hello, There!'
