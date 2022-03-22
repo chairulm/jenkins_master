@@ -24,9 +24,10 @@ node{
 			try{
 				sh "ssh -o StrictHostKeyChecking=no ubuntu@${server} ${dockerStop}"
 			}catch (err){
+			}finally{
+				sh 'ssh -o StrictHostKeyChecking=no ubuntu@${server} docker system prune -af'
+				sh "ssh -o StrictHostKeyChecking=no ubuntu@${server} ${dockerRun}"
 			}
-			sh 'ssh -o StrictHostKeyChecking=no ubuntu@${server} docker system prune -af'
-			sh "ssh -o StrictHostKeyChecking=no ubuntu@${server} ${dockerRun}"
 		}
 	}
         stage('Run Container on Production Server'){
