@@ -21,7 +21,7 @@ node{
 		def dockerStop = 'docker stop app1'
 		def server = '192.168.5.213'
 		sshagent(['openstack']) {
-			catchError {
+			catchError(buildResult: 'SUCCESS', stageResult: 'SUCCESS') {
 				sh "ssh -o StrictHostKeyChecking=no ubuntu@${server} ${dockerStop}"
 			}
 			sh 'ssh -o StrictHostKeyChecking=no ubuntu@${server} docker system prune -af'
