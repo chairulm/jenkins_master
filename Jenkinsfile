@@ -23,11 +23,10 @@ node{
 		sshagent(['openstack']) {
 			try{
 				sh "ssh -o StrictHostKeyChecking=no ubuntu@${server} ${dockerStop}"
-				sh 'ssh -o StrictHostKeyChecking=no ubuntu@${server} docker system prune -af'
 			}catch (err){
-			}finally{
-				sh "ssh -o StrictHostKeyChecking=no ubuntu@${server} ${dockerRun}"
 			}
+			sh "ssh -o StrictHostKeyChecking=no ubuntu@${server} docker system prune -af"
+			sh "ssh -o StrictHostKeyChecking=no ubuntu@${server} ${dockerRun}"
 		}
 	}
         stage('Run Container on Production Server'){
@@ -37,11 +36,10 @@ node{
                 sshagent(['openstack']) {
 			try{
 				sh "ssh -o StrictHostKeyChecking=no ubuntu@${server} ${dockerStop}"
-				sh 'ssh -o StrictHostKeyChecking=no ubuntu@${server} docker system prune -af'
                         }catch (err){
-			}finally{
-				sh "ssh -o StrictHostKeyChecking=no ubuntu@${server} ${dockerRun}"
 			}
+			sh "ssh -o StrictHostKeyChecking=no ubuntu@${server} docker system prune -af"
+			sh "ssh -o StrictHostKeyChecking=no ubuntu@${server} ${dockerRun}"
 		}
         }
 }
