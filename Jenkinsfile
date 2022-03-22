@@ -23,6 +23,7 @@ node{
 		sshagent(['openstack']) {
 			try{
 				sh "ssh -o StrictHostKeyChecking=no ubuntu@${server} ${dockerStop}"
+			}catch (err){
 			}
 			sh 'ssh -o StrictHostKeyChecking=no ubuntu@${server} docker system prune -af'
 			sh "ssh -o StrictHostKeyChecking=no ubuntu@${server} ${dockerRun}"
