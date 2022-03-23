@@ -33,7 +33,7 @@ pipeline{
 					script {
 						def dockerRun = 'docker run -p 8080:8080 -d --name app1 chairulfm/app1:2.0'
 						def dockerStop = 'docker stop app1'
-						def server = '192.168.5.213'
+						def server = '192.168.5.202'
 					
 						sshagent(['openstack']) {
 								try{
@@ -83,7 +83,7 @@ pipeline{
 					script {
 						def dockerRun = 'docker run -p 8080:8080 -d --name app1 chairulfm/app1:2.0'
 						def dockerStop = 'docker stop app1'
-						def server = '192.168.5.208'
+						def server = '192.168.5.207'
 					
 						sshagent(['openstack']) {
 								try{
