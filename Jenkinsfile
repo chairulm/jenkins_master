@@ -46,6 +46,38 @@ pipeline{
 					}
 				}
 			}
+			stage('Preparing Artifactory Access'){
+				steps{
+					rtServer (
+						id: "artifactory",
+						url: 'http://10.0.0.89:8082/artifactory',
+						username: 'admin',
+						password: '1234!Abcdef'
+					)
+				}
+			}
+			stage('Upload To Artifactory'){
+				steps{
+					rtUpload (
+						serverId: "artifactory",
+						spec: '''{
+							"files": [
+							{
+								"pattern": "*.war",
+								"target": "app1"
+							}
+							]
+						}''',
+					)
+				}
+			}
+			stage('Publish Build Info'){
+				steps{
+					rtPublishBuildInfo (
+						serverId: "artifactory"
+					)
+				}
+			}
 			stage('Run Container on Production Server'){
 				steps{
 					script {
