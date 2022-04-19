@@ -33,7 +33,7 @@ pipeline{
 					script {
 						def dockerRun = 'docker run -p 8080:8080 -d --name app1 chairulfm/app1:2.0'
 						def dockerStop = 'docker stop app1'
-						def server = '192.168.5.202'
+						def server = '192.168.5.229'
 					
 						sshagent(['openstack']) {
 								try{
@@ -50,7 +50,7 @@ pipeline{
 				steps{
 					rtServer (
 						id: "artifactory",
-						url: 'http://10.0.0.89:8082/artifactory',
+						url: 'http://10.0.0.182:8082/artifactory',
 						username: 'admin',
 						password: '1234!Abcdef'
 					)
@@ -83,7 +83,7 @@ pipeline{
 					script {
 						def dockerRun = 'docker run -p 8080:8080 -d --name app1 chairulfm/app1:2.0'
 						def dockerStop = 'docker stop app1'
-						def server = '192.168.5.207'
+						def server = '192.168.5.227'
 					
 						sshagent(['openstack']) {
 								try{
